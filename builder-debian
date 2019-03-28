@@ -1,0 +1,15 @@
+#!/bin/bash
+. builds/.env
+
+# Clean builds folders
+rm "$OUTPUT/$MODULE_NAME.deb"
+rm -r "$DEBIAN_USR" "$DEBIAN_ETC"
+
+# Create new folders
+mkdir "$DEBIAN_ETC" "$DEBIAN_USR" "$DEBIAN_SHARE" "$DEBIAN_BIN"
+
+# Copy bin to /usr/bin
+cp -r "$SRC_MODULE/bin" "$DEBIAN_BIN"
+
+# Copy config files to /etc 
+cp -r "$SRC_MODULE/src" "$DEBIAN_ETC/$MODULE_NAME" 
