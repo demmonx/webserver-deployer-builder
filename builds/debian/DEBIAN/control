@@ -1,0 +1,9 @@
+Package: webserver-deployer
+Version: 1.0
+Section: development
+Priority: optional
+Architecture: all
+Depends: bash
+Maintainer: Mr DEMERY Cyril <cyril.demery.pro@gmail.com>
+Description: webserver-deployer
+    Manager to deploy, remove, start, halt, update VBox for web development
