@@ -80,10 +80,8 @@ smtp:
 git:
   repo: [some git repo]
 
-mysql:
-  root:
-    passwd: [your-pass]
-  db: [db name]
+db:
+  name: [db name]
   user: [db user name, granted on db]
   passwd: [db user password]
 ```
