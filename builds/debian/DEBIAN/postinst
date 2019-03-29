@@ -1,7 +1,12 @@
 #!/bin/bash
+# Link roles
 cd /etc/ansible/roles 
 for f in $(find /etc/webserver-deployer/ansible/roles/ -maxdepth 1); do
     ln -s "$f" . 2>/dev/null
 done
 rm roles 2>/dev/null
+
+# Change file owner
+# chown -R root:root /usr/sbin/webserver-deployer* /usr/bin/webserver-deployer* /etc/webserver-deployer
+
 exit 0

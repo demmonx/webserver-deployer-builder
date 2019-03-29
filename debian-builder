@@ -32,7 +32,7 @@ function build() {
 
     # Copy config files to /etc 
     echo "Move other files to etc"
-    cp -r "$SRC_MODULE/src/etc" "$ETC/$MODULE_NAME" 
+    cp -r "$SRC_MODULE/etc" "$ETC/$MODULE_NAME" 
 
     # Remove git repo
     find "$ROOT" -name ".git" -exec rm {} \;
@@ -67,8 +67,7 @@ function build() {
 
     # Change access right
     echo "Change access right"
-    chmod -R 775 builds/debian
-    chown -R root:root builds/debian
+    chmod -R 755 builds/debian
 
     echo "----------- Project can now be packaged"
 }
