@@ -32,11 +32,7 @@ function build() {
 
     # Copy config files to /etc 
     echo "Move other files to etc"
-    cp -r "$SRC_MODULE/src" "$ETC/$MODULE_NAME" 
-    mv "$ROOT/$ANSIBLE_PLAYBOOK.base" "$ROOT/$ANSIBLE_PLAYBOOK"
-    mv "$ROOT/$ANSIBLE_VARS.base" "$ROOT/$ANSIBLE_VARS"
-    mv "$ROOT/$ANSIBLE_INVENTORY.base" "$ROOT/$ANSIBLE_INVENTORY"
-    mv "$ROOT/$VAGRANT_FILE.base" "$ROOT/$VAGRANT_FILE"
+    cp -r "$SRC_MODULE/src/etc" "$ETC/$MODULE_NAME" 
 
     # Remove git repo
     find "$ROOT" -name ".git" -exec rm {} \;
