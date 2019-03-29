@@ -9,11 +9,12 @@ function build() {
 
     # Create new folders
     echo "Build deb arch"
-    mkdir "$ETC" "$USR" "$SHARE" "$BIN"
+    mkdir "$ETC" "$USR" "$SHARE" "$BIN" "$SBIN"
 
     # Copy bin to /usr/bin
     echo "Move bin files"
     cp -r "$SRC_MODULE/bin/"* "$BIN"
+    cp -r "$SRC_MODULE/sbin/"* "$SBIN"
 
     # Move private to bin
     mv "$BIN/private/"* "$BIN"
@@ -22,9 +23,10 @@ function build() {
     rmdir "$BIN/private"
 
     # Rename files in bin
-    for f in $(find $BIN -type f); do 
+    for f in $(find $BIN $SBIN -type f); do 
+        folder=${f%/*}
         name=$(basename $f)
-        mv -- "$f" "$BIN/$MODULE_NAME-$name" ; 
+        mv -- "$f" "$folder/$MODULE_NAME-$name" ; 
     done
     mv "$BIN/$MODULE_NAME-main" "$BIN/$MODULE_NAME"
 
@@ -69,7 +71,8 @@ function build() {
 
     # Change access right
     echo "Change access right"
-    chmod -R 755 builds/debian
+    chmod -R 775 builds/debian
+    chown -R root:root builds/debian
 
     echo "----------- Project can now be packaged"
 }
