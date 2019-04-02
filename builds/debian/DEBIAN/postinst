@@ -1,6 +1,10 @@
 #!/bin/bash
 # Link roles
-cd /etc/ansible/roles 
+directory="/etc/ansible/roles" 
+if [ ! -d "$directory" ]; then
+    mkdir "$directory"
+fi
+cd "$directory"
 for f in $(find /etc/webserver-deployer/ansible/roles/ -maxdepth 1); do
     ln -s "$f" . 2>/dev/null
 done

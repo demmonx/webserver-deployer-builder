@@ -30,6 +30,9 @@ If you need to edit some sources :
      1. Debian / Ubuntu : ` sudo dpkg -i webserver-deployer.deb`
      2. RedHat / CentOS / Fedora : `sudo yum install -y webserver-deployer.rpm`
 
+### Troubleshooting
+It seems that virtualbox 6.0 cause trouble during install, so just install it from official website and then run  ` sudo dpkg -i --force-depends webserver-deployer.deb`
+
 
 ## CLI interface
 
