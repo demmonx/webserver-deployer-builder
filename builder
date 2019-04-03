@@ -8,7 +8,10 @@ rm -r "$ROOT" "$BUILD_OUTPUT" 2> /dev/null
 
 # Create new folders
 echo "Build arch"
-mkdir "$ETC" "$USR" "$SHARE" "$BIN" "$SBIN"
+mkdir "$ETC" "$USR" "$SHARE" "$BIN" "$SBIN" "$DOC"
+
+# Move doc
+cp "src/doc/"* "$DOC"
 
 # Copy bin to /usr/bin
 echo "Move bin files"
