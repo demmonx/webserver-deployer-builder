@@ -1,0 +1,25 @@
+#!/bin/bash
+. .env
+
+# Package the .deb file
+echo "----------- PACKAGING START"
+
+# Clean
+rm "$OUTPUT/$MODULE_NAME.deb" 2> /dev/null
+rm -r "$DEBIAN_FOLDER/etc" "$DEBIAN_FOLDER/usr" 2> /dev/null
+
+# Extract the tar 
+tar -C "$DEBIAN_FOLDER" -zxvf "$BUILD_OUTPUT" > /dev/null
+mv "$DEBIAN_FOLDER/build/*" "$DEBIAN_FOLDER"
+rm -r "$DEBIAN_FOLDER/build"
+
+# Package
+mkdir "$OUTPUT"  2> /dev/null
+dpkg-deb --build "$DEBIAN_FOLDER" "$OUTPUT/$MODULE_NAME.deb"
+if [[ $? -eq 0 ]]; then
+    echo "----------- PACKAGING Success"
+else
+    echo "----------- PACKAGING ERROR"
+    echo "ABORTED."
+    exit 1
+fi
