@@ -1,6 +1,12 @@
 #!/bin/bash
 . .env
 
+# Verif build file exist
+if [[ ! -f "$BUILD_OUTPUT" ]]; then
+    echo "You should run ./builder first !"
+    exit 1
+fi
+
 # Package the .deb file
 echo "----------- PACKAGING START"
 
@@ -8,18 +14,18 @@ echo "----------- PACKAGING START"
 rm "$OUTPUT/$MODULE_NAME.rpm" 2> /dev/null
 rm -r "$RPM_FOLDER/SOURCES" "$RPM_FOLDER/SRPMS" "$RPM_FOLDER/BUILD"  "$RPM_FOLDER/RPMS" "$RPM_FOLDER/BUILDROOT" 2> /dev/null
 
+# Create folders
+mkdir "$RPM_FOLDER/SOURCES" "$RPM_FOLDER/SRPMS" "$RPM_FOLDER/BUILD"  "$RPM_FOLDER/RPMS" "$RPM_FOLDER/BUILDROOT"
+
 # Extract the tar 
-cp "$BUILD_OUTPUT" "$RPM_FOLDER"
-#tar -C "$RPM_FOLDER/SOURCES" -zxvf "$BUILD_OUTPUT"> /dev/null
-#mv "$RPM_FOLDER/SOURCES/build/*" "$RPM_FOLDER/SOURCES"
-#rm -r "$RPM_FOLDER/SOURCES/build"
+cp "$BUILD_OUTPUT" "$RPM_FOLDER/SOURCES"
 
 # Package
 mkdir "$OUTPUT"  2> /dev/null
-rpmbuild --root "$RPM_FOLDER"
+rpmbuild --bb "builds/rpm/SPECS/$MODULE_NAME.spec" --buildroot "$RPM_FOLDER/BUILDROOT" > /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     echo "----------- PACKAGING Success"
-    cp "$RPM_FOLDER/RPMS/noarch/webserver-deployer.rpm" "$OUTPUT/webserver-deployer.rpm"
+    cp "$RPM_FOLDER/RPMS/noarch/$MODULE_NAME"* "$OUTPUT/webserver-deployer.rpm" 
 else
     echo "----------- PACKAGING ERROR"
     echo "ABORTED."
