@@ -8,7 +8,7 @@ rm -r "$ROOT" "$BUILD_OUTPUT" 2> /dev/null
 
 # Create new folders
 echo "Build arch"
-mkdir "$ETC" "$USR" "$SHARE" "$BIN" "$SBIN" "$DOC"
+mkdir -p "$ROOT" "$ETC" "$USR" "$SHARE" "$BIN" "$SBIN" "$DOC"
 
 # Move doc
 cp "src/doc/"* "$DOC"
@@ -73,6 +73,9 @@ chmod -R 755 "$ROOT"
 
 # Tar the result
 echo "Tar the result"
-tar -zcvf "$BUILD_OUTPUT" "$ROOT" > /dev/null
+tar -zcvf "$BUILD_OUTPUT" "$ETC" "$USR" > /dev/null
+
+# Remove build folder
+rm -r "$ROOT"  2> /dev/null
 
 echo "----------- Project can now be packaged"
