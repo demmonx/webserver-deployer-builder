@@ -3,7 +3,7 @@ Version: 1.0
 Section: development
 Priority: optional
 Architecture: all
-Depends: bash, ansible, vagrant (>= 2.0), virtualbox (>= 6.0)
+Depends: bash, ansible (>= 2.3), vagrant (>= 2.0)
 Maintainer: Mr DEMERY Cyril <cyril.demery.pro@gmail.com>
 Description: webserver-deployer
     Manager to deploy, remove, start, halt, update VBox for web development
