@@ -13,8 +13,7 @@ URL:            http://github.com/demmonx/webserver-deployer
 Vendor:         Cyril Démery cyril.demery.pro@gmail.com
 Packager: 		Cyril Démery
 Source:         build.tar.gz
-BuildRequires:	bash >= 4.0
-Requires:	vagrant >= 2.0, ansible >= 2.3
+Requires:	vagrant >= 2.0, ansible >= 2.3, bash >= 4.0
 
 %description
 Vagrant and VirtualBox are used to quickly build or rebuild virtual servers.

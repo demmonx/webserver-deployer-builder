@@ -15,14 +15,14 @@ rm "$OUTPUT/$MODULE_NAME.rpm" 2> /dev/null
 rm -r "$RPM_FOLDER/SOURCES" "$RPM_FOLDER/SRPMS" "$RPM_FOLDER/BUILD"  "$RPM_FOLDER/RPMS" "$RPM_FOLDER/BUILDROOT" 2> /dev/null
 
 # Create folders
-mkdir "$RPM_FOLDER/SOURCES" "$RPM_FOLDER/SRPMS" "$RPM_FOLDER/BUILD"  "$RPM_FOLDER/RPMS" "$RPM_FOLDER/BUILDROOT"
+mkdir "$RPM_FOLDER/SOURCES" "$RPM_FOLDER/SRPMS" "$RPM_FOLDER/BUILD"  "$RPM_FOLDER/RPMS" "$RPM_FOLDER/BUILDROOT" > /dev/null
 
 # Extract the tar 
 cp "$BUILD_OUTPUT" "$RPM_FOLDER/SOURCES"
 
 # Package
 mkdir "$OUTPUT"  2> /dev/null
-rpmbuild --bb "builds/rpm/SPECS/$MODULE_NAME.spec" --buildroot "$RPM_FOLDER/BUILDROOT" > /dev/null 2>&1
+rpmbuild --bb "builds/rpm/SPECS/$MODULE_NAME.spec" --buildroot "$RPM_FOLDER/BUILDROOT" > /dev/null
 if [[ $? -eq 0 ]]; then
     echo "----------- PACKAGING Success"
     cp "$RPM_FOLDER/RPMS/noarch/$MODULE_NAME"* "$OUTPUT/webserver-deployer.rpm" 
