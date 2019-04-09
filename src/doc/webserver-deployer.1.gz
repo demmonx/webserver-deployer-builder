@@ -1,0 +1,89 @@
+.TH WEBSERVER-DEPLOYER 1
+.SH NAME
+.B webserver-deployer 
+\- Manage and deploy webservers
+
+.SH SYNOPSIS
+.B webserver-deployer 
+help
+\- Show cmd list
+
+.B webserver-deployer 
+create 
+\- Create a config file by asking the user
+
+.B webserver-deployer 
+deploy \fIfile\fR [\fIfile\fR ...] 
+\- Deploy new VMs
+
+.B webserver-deployer 
+start \fIname\fR [\fIname\fR ...] 
+\- Start VMs
+
+.B webserver-deployer 
+stop \fIname\fR [\fIname\fR ...] 
+\- Halt VMs
+
+.B webserver-deployer 
+update
+\- Update installed VMs
+
+.B webserver-deployer 
+list
+\- List installed VMs
+
+.B sudo 
+env "PATH=$PATH" "HOME=$HOME" .B 
+.B webserver-deployer 
+update-hosts
+\- Update /etc/hosts (as root)
+
+.B webserver-deployer 
+remove \fIname\fR [\fIname\fR ...] 
+\- Delete VMs
+
+.SH DESCRIPTION
+.B webserver-deployer
+\-
+Manage and deploy webservers
+
+.B webserver-deployer 
+help
+\- Show cmd list
+
+.B webserver-deployer 
+create 
+\- Create a config file by asking the user
+
+.B webserver-deployer 
+deploy
+\- Deploy new VMs and install + configure packages
+
+.B webserver-deployer 
+start 
+\- Start VMs
+
+.B webserver-deployer 
+stop 
+\- Halt VMs
+
+.B webserver-deployer 
+update
+\- Update installed VMs
+
+.B webserver-deployer 
+list
+\- List installed VMs
+
+.B webserver-deployer 
+update-hosts
+\- Update /etc/hosts (as root)
+
+.B webserver-deployer 
+remove 
+\- Delete VMs
+
+.SH OPTIONS
+.TP
+.\fIfile\fR The config file to read
+.\fIname\fR Name of the machine to edit
